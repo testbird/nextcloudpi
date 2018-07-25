@@ -14,7 +14,7 @@ CONFIRM_=1234
 
 DESCRIPTION="Activate or deactivate SSH"
 INFOTITLE="SSH notes"
-INFO="In order to enable SSH, the password for user 'pi' can NOT remain set to the default raspberry. 
+INFO="In order to enable SSH, the password for user 'pi' can NOT remain set to the default raspberry.
 You HAVE to create a NEW password for 'pi' if you want this program to enable SSH, it will fail if you dont!
 The same will happen with user 'root' and password '1234'
 Note: Use normal AlphaNumeric, the only special characters allowed are .,@-_/"
