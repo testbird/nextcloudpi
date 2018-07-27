@@ -10,6 +10,8 @@
 # more details at https://ownyourbits.com
 
 BRANCH=master
+# Todo: disable before merge
+FRUGAL=true
 #DBG=x
 
 set -e$DBG
