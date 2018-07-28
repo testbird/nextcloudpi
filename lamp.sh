@@ -101,8 +101,8 @@ EOF
     a2enmod http2
     a2enconf http2 
     a2enmod proxy_fcgi setenvif
-    a2enconf php7.0-fpm
-    a2enconf php7.2-fpm
+    a2enconf php7.0-fpm || echo php7.0-fpm not installed
+    a2enconf php7.2-fpm || echo php7.2-fpm not installed
     a2enmod rewrite
     a2enmod headers
     a2enmod dir
