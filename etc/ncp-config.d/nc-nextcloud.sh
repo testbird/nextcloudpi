@@ -40,7 +40,7 @@ install()
   # Optional packets for Nextcloud and Apps
   apt-get update
   $APTINSTALL lbzip2 iputils-ping
-  $APTINSTALL php-smbclient 
+  $APTINSTALL php-smbclient || echo php-smbclient is not available yet (debian buster)
 
   # POSTFIX
   $APTINSTALL postfix || {
