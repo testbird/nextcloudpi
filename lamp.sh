@@ -33,7 +33,8 @@ install()
     $APTINSTALL apache2
     $APTINSTALL php php-curl php-gd php-fpm php-cli php-opcache \
                 php-mbstring php-xml php-zip php-fileinfo php-ldap \
-                php-intl libmagickcore-6.q16-2-extra php-imagick php-mcrypt
+                php-intl libmagickcore-6.q16-2-extra php-imagick
+    $APTINSTALL php-mcrypt || echo php-mcrypt was still not available in debian buster
     mkdir -p /run/php
 
     # mariaDB password
