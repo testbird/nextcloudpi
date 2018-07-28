@@ -73,12 +73,12 @@ install()
     systemctl restart redis-server
     systemctl enable  redis-server
 
-    systemctl stop php7.0-fpm
-    systemctl stop php7.2-fpm
+    systemctl stop php7.0-fpm  || echo php7.0-fpm not installed
+    systemctl stop php7.2-fpm || echo php7.2-fpm not installed
     systemctl stop mysql
     sleep 0.5
-    systemctl start php7.0-fpm
-    systemctl start php7.2-fpm
+    systemctl start php7.0-fpm || echo php7.0-fpm not installed
+    systemctl start php7.2-fpm || echo php7.2-fpm not installed
     systemctl start mysql
   }
   
