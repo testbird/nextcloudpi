@@ -31,9 +31,9 @@ install()
 
     $APTINSTALL apt-utils cron
     $APTINSTALL apache2
-    $APTINSTALL php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache \
-                php7.0-mbstring php7.0-xml php7.0-zip php7.0-fileinfo php7.0-ldap \
-                php7.0-intl libmagickcore-6.q16-2-extra php7.0-imagick php-mcrypt
+    $APTINSTALL php php-curl php-gd php-fpm php-cli php-opcache \
+                php-mbstring php-xml php-zip php-fileinfo php-ldap \
+                php-intl libmagickcore-6.q16-2-extra php-imagick php-mcrypt
     mkdir -p /run/php
 
     # mariaDB password
@@ -43,7 +43,7 @@ install()
 
     debconf-set-selections <<< "mariadb-server-5.5 mysql-server/root_password password $DBPASSWD"
     debconf-set-selections <<< "mariadb-server-5.5 mysql-server/root_password_again password $DBPASSWD"
-    $APTINSTALL mariadb-server php7.0-mysql 
+    $APTINSTALL mariadb-server php-mysql 
     mkdir -p /run/mysqld
     chown mysql /run/mysqld
 
@@ -84,7 +84,7 @@ EOF
     # CONFIGURE PHP7
     ##########################################
 
-    cat > /etc/php/7.0/mods-available/opcache.ini <<EOF
+    cat > /etc/php/*/mods-available/opcache.ini <<EOF
 zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
@@ -101,6 +101,7 @@ EOF
     a2enconf http2 
     a2enmod proxy_fcgi setenvif
     a2enconf php7.0-fpm
+    a2enconf php7.2-fpm
     a2enmod rewrite
     a2enmod headers
     a2enmod dir
