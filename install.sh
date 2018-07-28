@@ -25,7 +25,7 @@ trap "rm -rf \"${TMPDIR}\" ; exit 0" 0 1 2 3 15
 }
 
 # check_distro 
-grep -q -e "Debian GNU/Linux 9" -e "Raspbian GNU/Linux 9" /etc/issue || {
+grep -q -e "Debian GNU/Linux" -e "Raspbian GNU/Linux" /etc/issue || {
   echo "distro not supported"; 
   exit 1; 
 }
