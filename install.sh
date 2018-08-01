@@ -45,10 +45,46 @@ echo -e "\nInstalling NextCloudPi"
 source etc/library.sh
 
 install_script  lamp.sh
+
+echo "Ready to install NC"
+read -p "Are you sure? [y/n]" -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
+
 install_script  etc/ncp-config.d/nc-nextcloud.sh
+
+echo "Ready to configure NC"
+read -p "Are you sure? [y/n]" -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
 activate_script etc/ncp-config.d/nc-nextcloud.sh
+
+echo "Ready to install NCP-web"
+read -p "Are you sure? [y/n]" -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
 install_script  ncp.sh
+
+echo "Ready to configure NCP-web"
+read -p "Are you sure? [y/n]" -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
 activate_script etc/ncp-config.d/nc-init.sh
+
+echo "Ready to install post-inst.sh"
+read -p "Are you sure? [y/n]" -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
 [[ -f /.ncp-image ]] && install_script post-inst.sh
 
 popd
