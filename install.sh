@@ -28,18 +28,6 @@ grep -q -e "Debian GNU/Linux" -e "Raspbian GNU/Linux" /etc/issue || {
   exit 1; 
 }
 
-# check installed software
-if [ type mysqld  &>/dev/null ]
-then
-  echo ">>> WARNING: existing mysqld configuration will be changed <<<"
-  read -p "Are you sure? [y/n]" -n 1 -r
-  if [[ ! $REPLY =~ ^[Yy]$ ]]
-  then
-    exit 1
-  fi
-fi
-
-
 
 # get install code
 echo "Getting build code..."
