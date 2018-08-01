@@ -37,6 +37,17 @@ install()
     $APTINSTALL php-mcrypt || echo "php-mcrypt was still not available in debian buster"
     mkdir -p /run/php
 
+    # check sqld
+    if [ type mysqld  &>/dev/null ]
+    then
+      echo ">>> WARNING: existing mysqld configuration will be changed <<<"
+      read -p "Are you sure? [y/n]" -n 1 -r
+      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      then
+        exit 1
+      fi
+    fi
+
     # mariaDB password
     local DBPASSWD="default"
     echo -e "[client]\npassword=$DBPASSWD" > /root/.my.cnf
