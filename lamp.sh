@@ -31,12 +31,12 @@ install()
 
     $APTINSTALL apt-utils cron
     
-    [ -e /etc/apache2/sites-enabled ] || $APTINSTALL apache2
+    $APTINSTALL apache2
     
     $APTINSTALL php php-curl php-gd php-fpm php-cli php-opcache \
                 php-mbstring php-xml php-zip php-fileinfo php-ldap \
                 php-intl libmagickcore-6.q16-2-extra php-imagick
-    $APTINSTALL php-mcrypt || echo "php-mcrypt was still not available in debian buster"
+    $APTINSTALL php-mcrypt || echo "Warning: php-mcrypt install failed (still not available in testing?)"
     mkdir -p /run/php
 
     # check sqld
