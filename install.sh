@@ -35,6 +35,8 @@ apt-get update
 apt-get install --no-install-recommends -y wget ca-certificates sudo
 
 pushd "$TMPDIR"
+
+# Todo: set back to orig. nextcloud/nextcloudpi before merging:
 wget -O- --content-disposition https://github.com/testbird/nextcloudpi/archive/"$BRANCH"/latest.tar.gz \
   | tar -xz \
   || exit 1
@@ -46,24 +48,13 @@ source etc/library.sh
 
 install_script  lamp.sh
 
-echo "Ready to install NC"
-read
 install_script  etc/ncp-config.d/nc-nextcloud.sh
-
-echo "Ready to configure NC"
-read
 activate_script etc/ncp-config.d/nc-nextcloud.sh
 
-echo "Ready to install NCP-web"
-read
 install_script  ncp.sh
 
-echo "Ready to configure NCP-web"
-read
 activate_script etc/ncp-config.d/nc-init.sh
 
-echo "Ready to install post-inst.sh"
-read
 [[ -f /.ncp-image ]] && install_script post-inst.sh
 
 popd
