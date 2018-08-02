@@ -118,10 +118,17 @@ EOF
   a2ensite ncp-activation
 
   ## NCP USER FOR AUTHENTICATION
-  useradd --home-dir /nonexistent "$WEBADMIN"
+  if id ncp >/dev/null 2>&1
   echo -e "$WEBPASSWD\n$WEBPASSWD" | passwd "$WEBADMIN"
+  then
   chsh -s /usr/sbin/nologin "$WEBADMIN"
-
+    echo "WARNING: user \"ncp\" already existed!" 
+  else
+    useradd --home-dir /nonexistent "$WEBADMIN"
+    echo -e "$WEBPASSWD\n$WEBPASSWD" | passwd "$WEBADMIN"
+    chsh -s /usr/sbin/nologin "$WEBADMIN"
+  fi
+  
   ## NCP LAUNCHER
   mkdir -p /home/www
   chown www-data:www-data /home/www
