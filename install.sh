@@ -10,8 +10,16 @@
 # more details at https://ownyourbits.com
 
 BRANCH=master
-#DBG=x
 
+if [ apt-get -s install php7.2 ]
+then
+  PHPVER=7.2
+else
+  PHPVER=7.0
+fi
+
+
+#DBG=x
 set -e$DBG
 
 TMPDIR="$(mktemp -d /tmp/nextcloudpi.XXXXXX || (echo "Failed to create temp dir. Exiting" >&2 ; exit 1) )"
@@ -36,11 +44,12 @@ apt-get install --no-install-recommends -y wget ca-certificates sudo
 
 pushd "$TMPDIR"
 
-# Todo: set back to orig. nextcloud/nextcloudpi before merging:
+# TODO before merging: set this back to orig. nextcloud/nextcloudpi
 wget -O- --content-disposition https://github.com/testbird/nextcloudpi/archive/"$BRANCH"/latest.tar.gz \
   | tar -xz \
   || exit 1
 cd - && cd "$TMPDIR"/nextcloudpi-"$BRANCH"
+
 
 # install NCP
 echo -e "\nInstalling NextCloudPi"
